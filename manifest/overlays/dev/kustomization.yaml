@@ -6,6 +6,6 @@ resources:
 
 images:
 - name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
-  newTag: b7180a4
+  newTag: 0c1469a
   
 namespace: dev
