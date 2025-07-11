@@ -1,1 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vinyl-groove-ingress
+  namespace: vinyl-app-namespace # Pod가 배포된 네임스페이스
+  annotations:
+    # ALB Controller 관련 어노테이션
+    alb.ingress.kubernetes.io/scheme: internet-facing  
+    alb.ingress.kubernetes.io/target-type: ip         
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:123456789012:certificate/xxxxxx  # 이거 HTTPS 안쓸거라 필요 없을듯?
+    alb.ingress.kubernetes.io/ssl-redirect: '443'     # 이것도
+    alb.ingress.kubernetes.io/healthcheck-path: /health 
+    alb.ingress.kubernetes.io/healthcheck-port: '8080'  
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60 
 
+spec:
+  ingressClassName: alb 
+  rules:
+  - host: vinyl-groove.example.com  
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vinyl-app-service  # 트래픽을 전달할 Service 이름
+            port:
+              number: 8080        # Service의 포트
