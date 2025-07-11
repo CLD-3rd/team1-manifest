@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: alb 
   rules:
-  - host: route53-shop.com  
+  - host: route-53.shop  
     http:
       paths:
       - path: /
