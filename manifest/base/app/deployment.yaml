@@ -12,6 +12,7 @@ spec:
       labels:
         app.kubernetes.io/name: vinyl-app
     spec:
+      serviceAccountName: vinyl-app-sa  # ← ServiceAccount 설정 추가
       containers:
       - name: vinyl-app-container
         image: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
