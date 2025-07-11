@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ../../base
+- service-account.yaml # service account 리소스 참조
 
 images:
 - name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
