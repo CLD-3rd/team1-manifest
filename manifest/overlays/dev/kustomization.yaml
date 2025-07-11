@@ -7,8 +7,5 @@ resources:
 images:
 - name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
   newTag: caf6cde
-- name: h6bro/app-with-argocd-integrated
-  newName: h6bro/app-with-argocd-integrated
-  newTag: 12a6866
-
+  
 namespace: dev
