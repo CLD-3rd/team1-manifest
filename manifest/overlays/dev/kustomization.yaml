@@ -6,7 +6,9 @@ resources:
 - service-account.yaml # service account 리소스 참조
 
 images:
-- name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
-  newTag: 0c1469a
+- name: h6bro/vinyl-app-repo
+  newTag: 123456
+#- name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove # ECR 버전
+#  newTag: 0c1469a # ECR 버전
   
 namespace: dev
