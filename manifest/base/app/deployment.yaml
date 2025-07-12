@@ -15,7 +15,8 @@ spec:
       serviceAccountName: vinyl-app-sa  # ← ServiceAccount 설정 추가
       containers:
       - name: vinyl-app-container
-        image: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove
+        # image: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove # ECR 버전
+        image: h6bro/vinyl-app-repo # docker hub 버전
         ports:
           - protocol: TCP
             containerPort: 8080
