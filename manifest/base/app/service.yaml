@@ -7,8 +7,10 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: vinyl-app
-  type: ClusterIP
+  #type: ClusterIP
+  type: NodePort
   ports:
   - protocol: TCP
     port: 8080
     targetPort: 8080
+    nodePort: 30080
