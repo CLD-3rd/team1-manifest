@@ -1,29 +1,42 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: vinyl-groove-ingress
-#   #namespace: vinyl-app-namespace # Pod가 배포된 네임스페이스
-#   annotations:
-#     # ALB Controller 관련 어노테이션
-#     alb.ingress.kubernetes.io/scheme: internet-facing  
-#     alb.ingress.kubernetes.io/target-type: ip         
-#     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-#     alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/xxxx"  # ACM 인증서 ARN
-#     external-dns.alpha.kubernetes.io/hostname: www.r53.shop
-#     alb.ingress.kubernetes.io/healthcheck-path: /health 
-#     alb.ingress.kubernetes.io/healthcheck-port: '8080'  
-#     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60 
-
-# spec:
-#   ingressClassName: alb 
-#   rules:
-#   - host: www.r53.shop  
-#     http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: vinyl-app-service  # 트래픽을 전달할 Service 이름
-#             port:
-#               number: 8080        # Service의 포트
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vinyl-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # SSL/TLS를 위한 cert-manager 또는 ACM 통합 어노테이션 추가 필요
+    # cert-manager.io/cluster-issuer: "letsencrypt-prod" # 예시
+    # alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-northeast-2:123456789012:certificate/xxxx" # ACM 사용 시
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.r53-kjh.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vinyl-app-service
+            port:
+              number: 8080
+  - host: vinyl.r53-kjh.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vinyl-app-service
+            port:
+              number: 8080
+  - host: argocd.r53-kjh.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server # ArgoCD UI 서비스 이름 (기본값)
+            port:
+              number: 8080 # ArgoCD UI 서비스 포트 (기본값, HTTPS는 443)

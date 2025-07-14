@@ -1,1 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
+resources:
+- ../../base
+- service-account.yaml
+
+images:
+- name: h6bro/vinyl-app-repo
+  newName: h6bro/vinyl-app-repo
+  newTag: 27e1ba1
+#- name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove # ECR 버전
+#  newTag: 0c1469a # ECR 버전
+  
+namespace: prod
