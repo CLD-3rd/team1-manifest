@@ -19,18 +19,10 @@ metadata:
   name: vinyl-app-service
   labels:
     app: vinyl-app
-  annotations:
-    # 1. 로드밸런서 타입을 NLB로 지정
-    service.beta.kubernetes.io/aws-load-balancer-type: "external"
-    # 2. NLB가 Pod의 IP로 직접 트래픽을 보내도록 설정
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
-    # 3. NLB의 Scheme을 인터넷 연결용으로 설정
-    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
 spec:
   selector:
     app.kubernetes.io/name: vinyl-app
-  # 4. Service 타입을 LoadBalancer로 변경
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - protocol: TCP
     port: 8080
