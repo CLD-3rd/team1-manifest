@@ -8,7 +8,7 @@ resources:
 images:
 - name: h6bro/vinyl-app-repo
   newName: h6bro/vinyl-app-repo
-  newTag: 8a970c0
+  newTag: 043e9d7
 #- name: 398563707131.dkr.ecr.ap-northeast-2.amazonaws.com/vinyl-groove # ECR 버전
 #  newTag: 0c1469a # ECR 버전
   
